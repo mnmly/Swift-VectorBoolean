@@ -9,7 +9,8 @@
 //  Copyright (c) 2015 Leslie Titze. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 
 let FBPointCloseThreshold = isRunningOn64BitDevice ? 1e-7 : 1e-3
 let FBParameterCloseThreshold = isRunningOn64BitDevice ? 1e-4 : 1e-2
@@ -21,7 +22,7 @@ let FBParameterCloseThreshold = isRunningOn64BitDevice ? 1e-4 : 1e-2
 /// It can lazily compute the 2D point where they intersect,
 /// the left and right parts of the curves relative to
 /// the intersection point, and whether the intersection is tangent.
-class FBBezierIntersection {
+public class FBBezierIntersection {
   fileprivate var _location : CGPoint?
   fileprivate var _curve1: FBBezierCurve
   fileprivate var _parameter1: Double
@@ -35,31 +36,31 @@ class FBBezierIntersection {
   fileprivate var needToComputeCurve1 = true
   fileprivate var needToComputeCurve2 = true
 
-  var location : CGPoint {
+  public var location : CGPoint {
     computeCurve1()
     return _location!
   }
 
-  var curve1 : FBBezierCurve {
+  public var curve1 : FBBezierCurve {
     return _curve1
   }
 
-  var parameter1: Double {
+  public var parameter1: Double {
     return _parameter1
   }
 
-  var curve2 : FBBezierCurve {
+  public var curve2 : FBBezierCurve {
     return _curve2
   }
 
-  var parameter2: Double {
+  public var parameter2: Double {
     return _parameter2
   }
 
   //+ (id) intersectionWithCurve1:(FBBezierCurve *)curve1 parameter1:(CGFloat)parameter1 curve2:(FBBezierCurve *)curve2 parameter2:(CGFloat)parameter2;
   //- (id) initWithCurve1:(FBBezierCurve *)curve1 parameter1:(CGFloat)parameter1 curve2:(FBBezierCurve *)curve2 parameter2:(CGFloat)parameter2;
   // let i = FBBezierIntersection(curve1: dvbc1, param1: p1, curve2: dvbc2, param2: p2)
-  init(curve1: FBBezierCurve, param1: Double, curve2:FBBezierCurve, param2: Double) {
+  public init(curve1: FBBezierCurve, param1: Double, curve2:FBBezierCurve, param2: Double) {
     _curve1 = curve1
     _parameter1 = param1
     _curve2 = curve2
@@ -67,7 +68,7 @@ class FBBezierIntersection {
   }
 
   //- (BOOL) isTangent
-  var isTangent : Bool {
+  public var isTangent : Bool {
     // If we're at the end of a curve, it's not tangent,
     // so skip all the calculations
     if isAtEndPointOfCurve {
@@ -91,64 +92,64 @@ class FBBezierIntersection {
   }
 
   //- (FBBezierCurve *) curve1LeftBezier
-  var curve1LeftBezier : FBBezierCurve {
+  public var curve1LeftBezier : FBBezierCurve {
     computeCurve1()
     return _curve1LeftBezier!
   }
 
   //- (FBBezierCurve *) curve1RightBezier
-  var curve1RightBezier : FBBezierCurve {
+  public var curve1RightBezier : FBBezierCurve {
     computeCurve1()
     return _curve1RightBezier!
   }
 
   //- (FBBezierCurve *) curve2LeftBezier
-  var curve2LeftBezier : FBBezierCurve {
+  public var curve2LeftBezier : FBBezierCurve {
     computeCurve2()
     return _curve2LeftBezier!
   }
 
   //- (FBBezierCurve *) curve2RightBezier
-  var curve2RightBezier : FBBezierCurve {
+  public var curve2RightBezier : FBBezierCurve {
     computeCurve2()
     return _curve2RightBezier!
   }
 
 
   //- (BOOL) isAtStartOfCurve1
-  var isAtStartOfCurve1 : Bool {
+  public var isAtStartOfCurve1 : Bool {
     return FBAreValuesCloseWithOptions(_parameter1, value2: 0.0, threshold: FBParameterCloseThreshold) || _curve1.isPoint
   }
 
   //- (BOOL) isAtStopOfCurve1
-  var isAtStopOfCurve1 : Bool {
+  public var isAtStopOfCurve1 : Bool {
     return FBAreValuesCloseWithOptions(_parameter1, value2: 1.0, threshold: FBParameterCloseThreshold) || _curve1.isPoint
   }
 
   //- (BOOL) isAtEndPointOfCurve1
-  var isAtEndPointOfCurve1 : Bool {
+  public var isAtEndPointOfCurve1 : Bool {
     return self.isAtStartOfCurve1 || self.isAtStopOfCurve1
   }
 
 
   //- (BOOL) isAtStartOfCurve2
-  var isAtStartOfCurve2 : Bool {
+  public var isAtStartOfCurve2 : Bool {
     return FBAreValuesCloseWithOptions(_parameter2, value2: 0.0, threshold: FBParameterCloseThreshold) || _curve2.isPoint
   }
 
   //- (BOOL) isAtStopOfCurve2
-  var isAtStopOfCurve2 : Bool {
+  public var isAtStopOfCurve2 : Bool {
     return FBAreValuesCloseWithOptions(_parameter2, value2: 1.0, threshold: FBParameterCloseThreshold) || _curve2.isPoint
   }
 
   //- (BOOL) isAtEndPointOfCurve2
-  var isAtEndPointOfCurve2 : Bool {
+  public var isAtEndPointOfCurve2 : Bool {
     return self.isAtStartOfCurve2 || self.isAtStopOfCurve2
   }
   
 
   //- (BOOL) isAtEndPointOfCurve
-  var isAtEndPointOfCurve : Bool {
+  public var isAtEndPointOfCurve : Bool {
     return self.isAtEndPointOfCurve1 || self.isAtEndPointOfCurve2
   }
 

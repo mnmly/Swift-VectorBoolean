@@ -9,7 +9,8 @@
 //  Copyright (c) 2015 Leslie Titze. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 
 enum FBContourInside {
   case filled
@@ -34,7 +35,7 @@ class FBBezierContour {
   fileprivate var _bounds : CGRect
   fileprivate var _boundingRect : CGRect
   fileprivate var _inside : FBContourInside
-  fileprivate var	_bezPathCache : UIBezierPath?
+  fileprivate var	_bezPathCache : BezierPathAlias?
 
 
   //@property FBContourInside inside;
@@ -492,9 +493,9 @@ class FBBezierContour {
 
   // 376
   //- (NSBezierPath*) bezierPath		// GPC: added
-  var bezierPath : UIBezierPath {
+  var bezierPath : BezierPathAlias {
     if _bezPathCache == nil {
-      let path = UIBezierPath()
+      let path = BezierPathAlias()
       var firstPoint = true
 
       for edge in self.edges {
@@ -779,9 +780,9 @@ class FBBezierContour {
   /// This allows the internal state of a contour to be
   /// rapidly visualized so that bugs with boolean ops
   /// are easier to spot at a glance.
-  func debugPathForIntersectionType(_ itersectionType: Int) -> UIBezierPath {
+  func debugPathForIntersectionType(_ itersectionType: Int) -> BezierPathAlias {
 
-    let path : UIBezierPath = UIBezierPath()
+    let path : BezierPathAlias = BezierPathAlias()
 
     for edge in _edges {
 
@@ -798,9 +799,9 @@ class FBBezierContour {
           }
         }
         if crossing.isEntry {
-          path.append(UIBezierPath.circleAtPoint(crossing.location))
+          path.append(BezierPathAlias.circleAtPoint(crossing.location))
         } else {
-          path.append(UIBezierPath.rectAtPoint(crossing.location))
+          path.append(BezierPathAlias.rectAtPoint(crossing.location))
         }
 
         return (false, false)
@@ -810,7 +811,7 @@ class FBBezierContour {
     // Add the start point and direction for marking
     if let startEdge = self.startEdge {
       let startEdgeTangent = FBNormalizePoint(FBSubtractPoint(startEdge.controlPoint1, point2: startEdge.endPoint1));
-      path.append(UIBezierPath.triangleAtPoint(startEdge.endPoint1, direction: startEdgeTangent))
+      path.append(BezierPathAlias.triangleAtPoint(startEdge.endPoint1, direction: startEdgeTangent))
     }
 
     // Add the contour's entire path to make it easy

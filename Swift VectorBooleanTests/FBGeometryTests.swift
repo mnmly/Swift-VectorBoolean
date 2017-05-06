@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Startside Softworks. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 import XCTest
 
 class FBGeometryTests: XCTestCase {

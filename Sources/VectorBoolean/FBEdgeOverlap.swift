@@ -9,7 +9,8 @@
 //  Copyright (c) 2015 Leslie Titze. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 
 let FBOverlapThreshold = isRunningOn64BitDevice ? 1e-2 : 1e-1
 

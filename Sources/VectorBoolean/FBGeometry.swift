@@ -9,7 +9,8 @@
 //  Copyright (c) 2015 Leslie Titze. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 
 
 // ===================================
@@ -259,9 +260,9 @@ func FBAreValuesCloseWithOptions(_ value1: Double, value2: Double, threshold: Do
 // Helper methods for angles
 //
 
-let Two_π = 2.0 * M_PI
-let π = M_PI
-let Half_π = M_PI_2
+let Two_π = 2.0 * Double.pi
+let π = Double.pi
+let Half_π = Double.pi / 2.0
 
 
 // Normalize the angle between 0 and 2 π
@@ -443,7 +444,7 @@ func FBAngleRangeContainsAngle(_ range: FBAngleRange, angle: Double) -> Bool {
 
 
 // FBRange is a range of parameter (t)
-struct FBRange {
+public struct FBRange {
   var minimum : Double
   var maximum : Double
 }

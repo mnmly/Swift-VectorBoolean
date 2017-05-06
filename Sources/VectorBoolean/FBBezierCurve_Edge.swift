@@ -9,7 +9,8 @@
 //  Copyright (c) 2015 Leslie Titze. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 
 // 18
 //static void FBFindEdge1TangentCurves(FBBezierCurve *edge, FBBezierIntersection *intersection, FBBezierCurve** leftCurve, FBBezierCurve **rightCurve)

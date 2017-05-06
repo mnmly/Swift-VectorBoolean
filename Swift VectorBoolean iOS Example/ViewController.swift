@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VectorBoolean
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIAdaptivePresentationControllerDelegate {
 

@@ -9,9 +9,10 @@
 //  Copyright (c) 2015 Leslie Titze. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 
-class FBBezierIntersectRange {
+public class FBBezierIntersectRange {
   var _curve1: FBBezierCurve
   var _parameterRange1: FBRange
   var _curve1LeftBezier: FBBezierCurve?
@@ -53,7 +54,7 @@ class FBBezierIntersectRange {
 
   //+ (id) intersectRangeWithCurve1:(FBBezierCurve *)curve1 parameterRange1:(FBRange)parameterRange1 curve2:(FBBezierCurve *)curve2 parameterRange2:(FBRange)parameterRange2 reversed:(BOOL)reversed;
   // let i = FBBezierIntersectRange(curve1: dvbc1, parameterRange1: pr1, curve2: dvbc2, parameterRange2: pr2, reversed: rvsd)
-  init(curve1: FBBezierCurve, parameterRange1: FBRange, curve2: FBBezierCurve, parameterRange2: FBRange, reversed: Bool) {
+  public init(curve1: FBBezierCurve, parameterRange1: FBRange, curve2: FBBezierCurve, parameterRange2: FBRange, reversed: Bool) {
     _curve1 = curve1
     _parameterRange1 = parameterRange1
     _curve2 = curve2

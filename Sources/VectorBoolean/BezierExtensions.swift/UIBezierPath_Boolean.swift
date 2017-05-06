@@ -8,13 +8,11 @@
 //  Created by Leslie Titze on 2015-05-19.
 //  Copyright (c) 2015 Leslie Titze. All rights reserved.
 
-import UIKit
-
-extension UIBezierPath {
+public extension BezierPathAlias {
 
   // 15
   //- (NSBezierPath *) fb_union:(NSBezierPath *)path
-  func fb_union(_ path: UIBezierPath) -> UIBezierPath {
+  public func fb_union(_ path: BezierPathAlias) -> BezierPathAlias {
     let thisGraph = FBBezierGraph(path: self)
     let otherGraph = FBBezierGraph(path: path)
     let resultGraph = thisGraph.unionWithBezierGraph(otherGraph)!
@@ -25,7 +23,7 @@ extension UIBezierPath {
 
   // 24
   //- (NSBezierPath *) fb_intersect:(NSBezierPath *)path
-  func fb_intersect(_ path: UIBezierPath) -> UIBezierPath {
+  public func fb_intersect(_ path: BezierPathAlias) -> BezierPathAlias {
     let thisGraph = FBBezierGraph(path: self)
     let otherGraph = FBBezierGraph(path: path)
     let result = thisGraph.intersectWithBezierGraph(otherGraph).bezierPath
@@ -35,7 +33,7 @@ extension UIBezierPath {
 
   // 33
   //- (NSBezierPath *) fb_difference:(NSBezierPath *)path
-  func fb_difference(_ path: UIBezierPath) -> UIBezierPath {
+  public func fb_difference(_ path: BezierPathAlias) -> BezierPathAlias {
     let thisGraph = FBBezierGraph(path: self)
     let otherGraph = FBBezierGraph(path: path)
     let result = thisGraph.differenceWithBezierGraph(otherGraph).bezierPath
@@ -45,7 +43,7 @@ extension UIBezierPath {
 
   // 42
   //- (NSBezierPath *) fb_xor:(NSBezierPath *)path
-  func fb_xor(_ path: UIBezierPath) -> UIBezierPath {
+  public func fb_xor(_ path: BezierPathAlias) -> BezierPathAlias {
     let thisGraph = FBBezierGraph(path: self)
     let otherGraph = FBBezierGraph(path: path)
     let result = thisGraph.xorWithBezierGraph(otherGraph).bezierPath
