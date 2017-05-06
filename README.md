@@ -1,5 +1,6 @@
-Swift VectorBoolean for iOS
+Swift VectorBoolean for macOS and iOS
 ===========================
+
 
 ### ✻ Updated for Xcode 8 and Swift 3
 
@@ -19,6 +20,15 @@ I wrote this because I had a specific need for boolean operations on bezier path
 **Note:** *This code is now compatible with both 32-bit and 64-bit iOS devices.* Due to numeric precision limitations of the 32 bit version of iOS however, this code will misbehave on fractionally dimensioned bezier curves for the 32-bit case. For example, a line from 0.01, 0.01 to 0.02, 0.02 will be behave as a single point on an iPhone 4s but not on an iPhone 5s.
 
 For the majority of applications this should not be a significant limitation.
+
+
+### Carthage Usage
+
+Add it as dependency in `Cartfile`
+
+```
+github "mnmly/Swift-VectorBoolean" "feature/carthage-macos"
+```
 
 ## iOS Screens
 

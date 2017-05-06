@@ -68,7 +68,7 @@ extension NSBezierPath {
         return path
     }
     
-    var usesEvenOddFillRule: Bool {
+    public var usesEvenOddFillRule: Bool {
         set {
             self.windingRule = newValue ? .evenOddWindingRule : .nonZeroWindingRule
         }
