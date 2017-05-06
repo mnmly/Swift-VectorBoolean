@@ -17,7 +17,7 @@ import CoreGraphics
 ///
 /// The main piece of data is the intersection, but it also holds a pointer to the
 /// crossing's counterpart in the other FBBezierGraph
-class FBEdgeCrossing {
+public class FBEdgeCrossing {
 
   fileprivate var _intersection: FBBezierIntersection
 

@@ -12,7 +12,7 @@
 import Foundation
 import CoreGraphics
 
-class FBCurveLocation {
+public class FBCurveLocation {
 
   var graph : FBBezierGraph?
   var contour : FBBezierContour?

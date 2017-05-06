@@ -12,7 +12,7 @@
 import Foundation
 import CoreGraphics
 
-class FBContourOverlap {
+public class FBContourOverlap {
 
   fileprivate var runs : [FBEdgeOverlapRun] = []
 

@@ -27,34 +27,34 @@
 import Foundation
 import CoreGraphics
 
-class FBBezierGraph {
+public class FBBezierGraph {
 
   fileprivate var _bounds : CGRect
   fileprivate var _contours : [FBBezierContour]
 
-  var contours : [FBBezierContour] {
+  public var contours : [FBBezierContour] {
     get {
       return _contours
     }
   }
 
-  init() {
+  public init() {
     _contours = []
     _bounds = CGRect.null
   }
 
-  init(path: BezierPathAlias) {
+  public init(path: BezierPathAlias) {
     _contours = []
     _bounds = CGRect.null
     _ = initWithBezierPath(path)
   }
 
-  class func bezierGraphWithBezierPath(_ path: BezierPathAlias!) -> AnyObject {
+  public class func bezierGraphWithBezierPath(_ path: BezierPathAlias!) -> AnyObject {
     return FBBezierGraph().initWithBezierPath(path)
   }
 
   //- (id) initWithBezierPath:(NSBezierPath *)path
-  func initWithBezierPath(_ path: BezierPathAlias!) -> FBBezierGraph {
+  public func initWithBezierPath(_ path: BezierPathAlias!) -> FBBezierGraph {
     // A bezier graph is made up of contours, which are closed paths of curves. Anytime we
     //  see a move to in the BezierPathAlias, that's a new contour.
 
@@ -180,7 +180,7 @@ class FBBezierGraph {
 
   // 218
   //- (FBBezierGraph *) unionWithBezierGraph:(FBBezierGraph *)graph
-  func unionWithBezierGraph(_ graph: FBBezierGraph) -> FBBezierGraph! {
+  public func unionWithBezierGraph(_ graph: FBBezierGraph) -> FBBezierGraph! {
     // First insert FBEdgeCrossings into both graphs where the graphs
     //  cross.
     insertCrossingsWithBezierGraph(graph)
@@ -321,7 +321,7 @@ class FBBezierGraph {
 
   // 306
   //- (FBBezierGraph *) intersectWithBezierGraph:(FBBezierGraph *)graph
-  func intersectWithBezierGraph(_ graph: FBBezierGraph) -> FBBezierGraph {
+  public func intersectWithBezierGraph(_ graph: FBBezierGraph) -> FBBezierGraph {
 
     // First insert FBEdgeCrossings into both graphs where the graphs cross.
     insertCrossingsWithBezierGraph(graph)
@@ -427,7 +427,7 @@ class FBBezierGraph {
 
   // 398
   //- (FBBezierGraph *) differenceWithBezierGraph:(FBBezierGraph *)graph
-  func differenceWithBezierGraph(_ graph: FBBezierGraph) -> FBBezierGraph {
+  public func differenceWithBezierGraph(_ graph: FBBezierGraph) -> FBBezierGraph {
 
     // First insert FBEdgeCrossings into both graphs where the graphs cross.
     insertCrossingsWithBezierGraph(graph)
@@ -549,7 +549,7 @@ class FBBezierGraph {
 
   // 499
   //- (FBBezierGraph *) xorWithBezierGraph:(FBBezierGraph *)graph
-  func xorWithBezierGraph(_ graph: FBBezierGraph) -> FBBezierGraph {
+  public func xorWithBezierGraph(_ graph: FBBezierGraph) -> FBBezierGraph {
     // XOR is done by combing union (OR), intersect (AND) and difference.
     //
     // Specifically we compute the union of the two graphs and the intersect of them,
@@ -597,7 +597,7 @@ class FBBezierGraph {
 
   // 544
   //- (NSBezierPath *) bezierPath
-  var bezierPath : BezierPathAlias {
+  public var bezierPath : BezierPathAlias {
     // Convert this graph into a bezier path. This is straightforward, each contour
     //  starting with a move to and each subsequent edge being translated by doing
     //  a curve to.
@@ -713,7 +713,7 @@ class FBBezierGraph {
 
   // 639
   //- (void) cleanupCrossingsWithBezierGraph:(FBBezierGraph *)other
-  func cleanupCrossingsWithBezierGraph(_ other: FBBezierGraph) {
+  public func cleanupCrossingsWithBezierGraph(_ other: FBBezierGraph) {
     // Remove duplicate crossings that can happen at end points of edges
     removeDuplicateCrossings()
     other.removeDuplicateCrossings()
@@ -725,7 +725,7 @@ class FBBezierGraph {
 
   // 649
   //- (void) removeCrossingsInOverlaps
-  func removeCrossingsInOverlaps() {
+  public func removeCrossingsInOverlaps() {
     for ourContour in contours {
       for ourEdge in ourContour.edges {
 
@@ -872,7 +872,7 @@ class FBBezierGraph {
 
   // 750
   //- (NSRect) bounds
-  var bounds : CGRect {
+  public var bounds : CGRect {
 
     // Compute the bounds of the graph by unioning together
     // the bounds of the individual contours
@@ -942,7 +942,7 @@ class FBBezierGraph {
 
   // 791
   //- (FBCurveLocation *) closestLocationToPoint:(NSPoint)point
-  func closestLocationToPoint(_ point: CGPoint) -> FBCurveLocation? {
+  public func closestLocationToPoint(_ point: CGPoint) -> FBCurveLocation? {
     var closestLocation : FBCurveLocation? = nil
 
     for contour in _contours {
@@ -963,13 +963,13 @@ class FBBezierGraph {
 
   // 809
   //- (NSBezierPath *) debugPathForContainmentOfContour:(FBBezierContour *)testContour
-  func debugPathForContainmentOfContour(_ testContour: FBBezierContour) -> BezierPathAlias {
+  public func debugPathForContainmentOfContour(_ testContour: FBBezierContour) -> BezierPathAlias {
     return debugPathForContainmentOfContour(testContour, transform: CGAffineTransform.identity)
   }
 
   // 814
   //- (NSBezierPath *) debugPathForContainmentOfContour:(FBBezierContour *)testContour transform:(NSAffineTransform *)transform
-  func debugPathForContainmentOfContour(_ testContour: FBBezierContour, transform: CGAffineTransform) -> BezierPathAlias {
+  public func debugPathForContainmentOfContour(_ testContour: FBBezierContour, transform: CGAffineTransform) -> BezierPathAlias {
     let path = BezierPathAlias()
 
     var intersectCount = 0
@@ -1056,7 +1056,7 @@ class FBBezierGraph {
 
   // 882
   //- (NSBezierPath *) debugPathForJointsOfContour:(FBBezierContour *)testContour
-  func debugPathForJointsOfContour(_ testContour: FBBezierContour) -> BezierPathAlias {
+  public func debugPathForJointsOfContour(_ testContour: FBBezierContour) -> BezierPathAlias {
     let path = BezierPathAlias()
 
     for edge in testContour.edges {
@@ -1700,19 +1700,19 @@ class FBBezierGraph {
 
   // 1331
   //- (void) debuggingInsertCrossingsForUnionWithBezierGraph:(FBBezierGraph *)otherGraph
-  func debuggingInsertCrossingsForUnionWithBezierGraph(_ otherGraph: inout FBBezierGraph) {
+  public func debuggingInsertCrossingsForUnionWithBezierGraph(_ otherGraph: inout FBBezierGraph) {
     debuggingInsertCrossingsWithBezierGraph(&otherGraph, markInside: false, markOtherInside: false)
   }
 
   // 1336
   //- (void) debuggingInsertCrossingsForIntersectWithBezierGraph:(FBBezierGraph *)otherGraph
-  func debuggingInsertCrossingsForIntersectWithBezierGraph(_ otherGraph: inout FBBezierGraph) {
+  public func debuggingInsertCrossingsForIntersectWithBezierGraph(_ otherGraph: inout FBBezierGraph) {
     debuggingInsertCrossingsWithBezierGraph(&otherGraph, markInside: true, markOtherInside: true)
   }
 
   // 1341
   //- (void) debuggingInsertCrossingsForDifferenceWithBezierGraph:(FBBezierGraph *)otherGraph
-  func debuggingInsertCrossingsForDifferenceWithBezierGraph(_ otherGraph: inout FBBezierGraph) {
+  public func debuggingInsertCrossingsForDifferenceWithBezierGraph(_ otherGraph: inout FBBezierGraph) {
     debuggingInsertCrossingsWithBezierGraph(&otherGraph, markInside: false, markOtherInside: true)
   }
 
