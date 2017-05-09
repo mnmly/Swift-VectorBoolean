@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "99932E581EBE31C100B786F0"
-               BuildableName = "Swift-VectorBoolean iOS.framework"
+               BuildableName = "VectorBoolean.framework"
                BlueprintName = "Swift-VectorBoolean iOS"
                ReferencedContainer = "container:Swift VectorBoolean.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "99932E581EBE31C100B786F0"
-            BuildableName = "Swift-VectorBoolean iOS.framework"
+            BuildableName = "VectorBoolean.framework"
             BlueprintName = "Swift-VectorBoolean iOS"
             ReferencedContainer = "container:Swift VectorBoolean.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "99932E581EBE31C100B786F0"
-            BuildableName = "Swift-VectorBoolean iOS.framework"
+            BuildableName = "VectorBoolean.framework"
             BlueprintName = "Swift-VectorBoolean iOS"
             ReferencedContainer = "container:Swift VectorBoolean.xcodeproj">
          </BuildableReference>
